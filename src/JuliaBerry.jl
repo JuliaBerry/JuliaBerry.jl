@@ -40,7 +40,7 @@ function off(x::Thing)
 end
 
 on(x::Array{T}) where T<:Thing = on.(x)
-of(x::Array{T}) where T<:Thing = off.(x)
+off(x::Array{T}) where T<:Thing = off.(x)
 
 is_off(x::Thing) = PiGPIO.read(_pi[], x.pin) == 0
 is_on(x::Thing) = PiGPIO.read(_pi[], x.pin) == 1
@@ -56,6 +56,7 @@ struct Motor <: Thing
         PiGPIO.set_PWM_range(_pi[], bw_pin, 100)
         PiGPIO.set_PWM_dutycycle(_pi[], fw_pin, 0)
         PiGPIO.set_PWM_dutycycle(_pi[], bw_pin, 0)
+	new(fw_pin, bw_pin)
     end
 end
 
