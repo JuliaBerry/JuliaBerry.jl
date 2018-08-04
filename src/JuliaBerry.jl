@@ -3,14 +3,14 @@ __precompile__(false)
 using PiGPIO
 
 export Pin, InputPin, OuputPin, 
-	LED, Motor, forward, backward, speed, on, off, is_on, is_off
+	LED, Motor, forward, backward, speed, stop, on, off, is_on, is_off
 
 # package code goes here
 
 abstract type Thing
 end
 
-struct Pin
+struct Pin <: Thing
     pin::Int
 
     function Pin(pin, mode)
