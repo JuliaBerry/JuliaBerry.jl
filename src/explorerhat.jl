@@ -34,26 +34,26 @@ const DEBOUNCE_TIME = 20
 const CAP_PRODUCT_ID = 107
 
 function __init__()
-    global const motor = [
+    global  motor = [
         Motor(M1F, M1B),
         Motor(M2F, M2B)
     ]
 
-    global const led = [
+    global  led = [
         LED(LED1),
         LED(LED2),
         LED(LED3),
         LED(LED4)
     ]
 
-    global const output = [
+    global  output = [
         OutputPin(OUT1),
         OutputPinin(OUT2),
         OutputPinin(OUT3),
         OutputPin(OUT4)
     ]
 
-    global const input = [
+    global  input = [
         InputPin(OUT1),
         InputPin(OUT2),
         InputPin(OUT3),
