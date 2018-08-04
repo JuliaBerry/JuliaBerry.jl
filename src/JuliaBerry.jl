@@ -1,10 +1,14 @@
 module JuliaBerry
+__precompile__(false)
 using PiGPIO
 
-include("explorerhat.jl")
+export Pin, InputPin, OuputPin, 
+	LED, Motor, forward, backward, speed, on, off, is_on, is_off
+
 # package code goes here
 
 abstract type Thing
+end
 
 struct Pin
     pin::Int
@@ -58,8 +62,8 @@ end
 function speed(x::Motor, speed::Int=100)
     if speed>0
         forward(x, speed)
-    else if speed<0
-        backward(x, abs(speed)
+    elseif speed<0
+        backward(x, abs(speed))
     end
 end
 
@@ -78,12 +82,15 @@ function backward(x::Motor, speed::Int)
     PiGPIO.set_PWM_dutycycle(_pi[], x.bw_pin, speed)
 end
 
-global const Ref{Pi} _pi
+global const _pi = Ref{Pi}()
 function __init__()
     _pi[] = Pi()
 end
+#TODO remove 
+__init__()
 
-setpi(p::PI) = _pi[]=p
+setpi(p::Pi) = _pi[]=p
 
 
+include("explorerhat.jl")
 end # module

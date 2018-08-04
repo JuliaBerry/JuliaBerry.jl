@@ -1,4 +1,8 @@
 module ExplorerHat
+using JuliaBerry.Motor
+using JuliaBerry.LED
+using JuliaBerry.OutputPin
+using JuliaBerry.InputPin
 
 # Onboard LEDs above 1, 2, 3, 4
 const LED1 = 4
@@ -48,8 +52,8 @@ function __init__()
 
     global  output = [
         OutputPin(OUT1),
-        OutputPinin(OUT2),
-        OutputPinin(OUT3),
+        OutputPin(OUT2),
+        OutputPin(OUT3),
         OutputPin(OUT4)
     ]
 
@@ -60,4 +64,5 @@ function __init__()
         InputPin(OUT4)
     ]
 
+end
 end
