@@ -1,8 +1,8 @@
 module ExplorerHat
-using JuliaBerry.Motor
-using JuliaBerry.LED
-using JuliaBerry.OutputPin
-using JuliaBerry.InputPin
+import JuliaBerry.Motor
+import JuliaBerry.LED
+import JuliaBerry.OutputPin
+import JuliaBerry.InputPin
 
 # Onboard LEDs above 1, 2, 3, 4
 const LED1 = 4
