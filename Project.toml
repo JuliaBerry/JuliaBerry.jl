@@ -3,7 +3,7 @@ uuid = "c0b9960a-c887-5387-b23a-5cf61873b836"
 version = "0.1.0"
 
 [deps]
-PiGPIO = "fa6a7b62-84a1-539a-8ce7-6ce7cae50ddc"
+PiGPIO = "bb151fc1-c6dc-5496-8ed6-07f94907e623"
 
 [compat]
 julia = "1"
