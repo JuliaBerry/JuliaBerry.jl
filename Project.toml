@@ -1,0 +1,14 @@
+name = "JuliaBerry"
+uuid = "c0b9960a-c887-5387-b23a-5cf61873b836"
+
+[deps]
+PiGPIO = "fa6a7b62-84a1-539a-8ce7-6ce7cae50ddc"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
