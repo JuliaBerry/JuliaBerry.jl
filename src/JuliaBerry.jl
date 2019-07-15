@@ -3,8 +3,8 @@ __precompile__(false)
 using PiGPIO
 
 export Pin, InputPin, OuputPin,
-	LED, Motor, Buzzer
-	forward, backward, speed, stop, on, off, is_on, is_off
+	LED, Motor, Buzzer,
+	forward, backward, speed, stop, on, off, is_on, is_off, frequency
 
 # package code goes here
 
@@ -35,19 +35,20 @@ end
 struct Buzzer <: Thing
 	pin::Int
 
-	function Buzzer(pin)
+	function Buzzer(pin, freq)
 		PiGPIO.set_mode(_pi[], pin, PiGPIO.OUTPUT)
 		PiGPIO.set_PWM_frequency(_pi[], pin, freq)
-		new(pin, freq)
+		new(pin)
 	end
 end
 
 Buzzer(pin) = Buzzer(pin, 150)
 function frequency(b::Buzzer, freq::Int)
-	PiGPIO.set_PWM_frequency(_pi[], pin, freq)
+	PiGPIO.set_PWM_frequency(_pi[], b.pin, freq)
 end
 
-on(b::Buzzer) = PiGPIO.set_PWM_dutycycle(_pi[], x.pin, 100)
+on(b::Buzzer) = PiGPIO.set_PWM_dutycycle(_pi[], b.pin, 100)
+off(b::Buzzer) = PiGPIO.set_PWM_dutycycle(_pi[], b.pin, 0)
 
 
 function on(x::Thing)
