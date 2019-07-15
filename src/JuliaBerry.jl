@@ -2,8 +2,9 @@ module JuliaBerry
 __precompile__(false)
 using PiGPIO
 
-export Pin, InputPin, OuputPin, 
-	LED, Motor, forward, backward, speed, stop, on, off, is_on, is_off
+export Pin, InputPin, OuputPin,
+	LED, Motor, Buzzer
+	forward, backward, speed, stop, on, off, is_on, is_off
 
 # package code goes here
 
@@ -30,6 +31,24 @@ struct LED <: Thing
         new(pin)
     end
 end
+
+struct Buzzer <: Thing
+	pin::Int
+
+	function Buzzer(pin)
+		PiGPIO.set_mode(_pi[], pin, PiGPIO.OUTPUT)
+		PiGPIO.set_PWM_frequency(_pi[], pin, freq)
+		new(pin, freq)
+	end
+end
+
+Buzzer(pin) = Buzzer(pin, 150)
+function frequency(b::Buzzer, freq::Int)
+	PiGPIO.set_PWM_frequency(_pi[], pin, freq)
+end
+
+on(b::Buzzer) = PiGPIO.set_PWM_dutycycle(_pi[], x.pin, 100)
+
 
 function on(x::Thing)
     PiGPIO.write(_pi[], x.pin, 1)
@@ -87,7 +106,7 @@ global const _pi = Ref{Pi}()
 function __init__()
     _pi[] = Pi()
 end
-#TODO remove 
+#TODO remove
 __init__()
 
 setpi(p::Pi) = _pi[]=p
